@@ -1,3 +1,4 @@
+import html
 class QuizBrain:
 
     def __init__(self, question_list):
@@ -10,9 +11,11 @@ class QuizBrain:
         return self.question_number < len(self.question_list)
 
     def next_question(self):
+        
         self.current_question = self.question_list[self.question_number]
+        q_text = html.unescape(self.current_question.text)
         self.question_number += 1
-        return self.current_question.text
+        return q_text
 
     def check_answer(self, user_answer):
         correct_answer = self.current_question.answer
